@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllRequests } from "./api";
+import { getAllFeedbacks } from "./api";
 
-export const useGetRequests = () => {
+export const useGetFeedbacks = () => {
 	return useQuery({
-		queryKey: ["requests"],
-		queryFn: getAllRequests,
+		queryKey: ["feedbacks"],
+		queryFn: getAllFeedbacks,
 		staleTime: 24 * 60 * 1000,
 	});
 };
