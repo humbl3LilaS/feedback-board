@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
-export function getReqestStatusCount(status: string[]) {
+export function getRequestStatusCount(status: string[]) {
 	const statusTags = Array.from(new Set(status));
 
 	const counts = status.reduce((obj, val) => {

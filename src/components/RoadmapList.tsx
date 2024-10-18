@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { useGetFeedbacks } from "../api/query";
-import { cn, getReqestStatusCount } from "../util";
+import { cn, getRequestStatusCount } from "../util";
 
 const RoadmapList = ({ className }: { className?: string }) => {
 	const { data: requests } = useGetFeedbacks();
 
 	const { tags, counts } = useMemo(
-		() => getReqestStatusCount(requests?.map((item) => item.status) ?? []),
+		() => getRequestStatusCount(requests?.map((item) => item.status) ?? []),
 		[requests],
 	);
 

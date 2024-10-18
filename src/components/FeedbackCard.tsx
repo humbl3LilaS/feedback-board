@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { TFeeback } from "../api/api.type";
+import { TFeedback } from "../api/api.type";
 import { useUpdateFeedback } from "../api/mutation";
 
 type FeedbackCardProps = {
-	data: TFeeback;
+	data: TFeedback;
 };
 
 const FeedbackCard = ({ data }: FeedbackCardProps) => {
@@ -23,7 +23,7 @@ const FeedbackCard = ({ data }: FeedbackCardProps) => {
 					<Link to={`/feedbacks/details/${data.id}`}>{data.title}</Link>
 				</h2>
 				<p className="mb-2 text-sm text-paleGray">{data.description}</p>
-				<span className="block w-fit rounded-xl shado px-4 py-2 mb-4 text-sm font-bold text-primary bg-paleWhite capitalize">
+				<span className="block w-fit rounded-xl px-4 py-2 mb-4 text-sm font-bold text-primary bg-paleWhite capitalize">
 					{data.category}
 				</span>
 			</div>
@@ -41,7 +41,7 @@ const FeedbackCard = ({ data }: FeedbackCardProps) => {
 			</button>
 			<Link
 				className="py-2 px-4 w-fit h-fit flex items-center gap-x-2 rounded-xl bg-paleWhite text-paleGray font-bold md:order-last md:ml-auto"
-				to={`/feeback/details/${data.id}`}>
+				to={`/feedbacks/details/${data.id}`}>
 				<img
 					src="/assets/icons/icon-comments.svg"
 					alt="comments"

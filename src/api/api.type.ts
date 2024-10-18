@@ -1,4 +1,4 @@
-export interface TFeeback {
+export interface TFeedback {
 	id: number;
 	title: string;
 	upvote: number;
