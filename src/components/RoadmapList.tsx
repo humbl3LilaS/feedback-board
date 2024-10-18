@@ -1,6 +1,8 @@
-const RoadmapList = () => {
+import { cn } from "../util";
+
+const RoadmapList = ({ className }: { className?: string }) => {
 	return (
-		<div className="w-full p-6 rounded-xl bg-white shadow-md">
+		<div className={cn("w-full p-6 rounded-xl bg-white shadow-md", className)}>
 			<p className="mb-6 flex items-end justify-between">
 				<span className="text-lg text-textPrimary font-bold">Roadmap</span>
 				<span className="text-sm border-b border-b-secondary text-secondary font-semibold">

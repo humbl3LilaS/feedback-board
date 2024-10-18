@@ -1,9 +1,9 @@
 import { tags } from "../constant";
 import { cn } from "../util";
 
-const CategoryFilter = () => {
+const CategoryFilter = ({ className }: { className?: string }) => {
 	return (
-		<div className="w-full p-6 rounded-xl bg-white shadow-md">
+		<div className={cn("w-full p-6 rounded-xl bg-white shadow-md", className)}>
 			<ul className="flex flex-wrap gap-x-2 gap-y-3">
 				{tags.map((item, idx) => (
 					<li

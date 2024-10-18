@@ -12,24 +12,28 @@ const Header = () => {
 
 	return (
 		<header>
-			<div className="px-6 py-4 bg-mobile bg-cover flex justify-between">
-				<div>
-					<h1 className="font-bold text-white">Edelweiss</h1>
-					<p className="text-paleWhite text-sm">Feedback Board</p>
+			<nav className="gap-x-4 md:flex">
+				<div className="px-6 py-4 bg-mobile bg-cover flex justify-between md:flex-1 md:rounded-xl">
+					<div>
+						<h1 className="font-bold text-white">Edelweiss</h1>
+						<p className="text-paleWhite text-sm">Feedback Board</p>
+					</div>
+					<button
+						className="md:hidden"
+						onClick={sideBarToggle}>
+						<img
+							src={
+								sideBarActive
+									? "/assets/icons/icon-close.svg"
+									: "/assets/icons/icon-hamburger.svg"
+							}
+							alt="menu"
+						/>
+					</button>
 				</div>
-				<button
-					className="md:hidden"
-					onClick={sideBarToggle}>
-					<img
-						src={
-							sideBarActive
-								? "/assets/icons/icon-close.svg"
-								: "/assets/icons/icon-hamburger.svg"
-						}
-						alt="menu"
-					/>
-				</button>
-			</div>
+				<CategoryFilter className="max-sm:hidden md:flex-1" />
+				<RoadmapList className="max-sm:hidden md:flex-1" />
+			</nav>
 			{sideBarActive && <SideBar />}
 		</header>
 	);
