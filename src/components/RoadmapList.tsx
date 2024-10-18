@@ -24,7 +24,7 @@ const RoadmapList = ({ className }: { className?: string }) => {
 						className="mb-2 flex items-center gap-x-4"
 						key={item}>
 						<span className="block aspect-square w-2  bg-danger rounded-full" />
-						<span className="text-paleGray">{item}</span>
+						<span className="text-paleGray capitalize">{item}</span>
 						<span className="ml-auto text-paleGray font-bold">
 							{counts[item]}
 						</span>

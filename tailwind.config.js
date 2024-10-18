@@ -17,6 +17,7 @@ export default {
 			backgroundImage: {
 				mobile: "url('/assets/background/background-header-mobile.png')",
 				tablet: "url('/assets/background/background-header-tablet.png')",
+				desktop: "url('/assets/background/background-header-desktop.png')",
 			},
 			height: {
 				sidebar: "calc(100vh - 76px)",
