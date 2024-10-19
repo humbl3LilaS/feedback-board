@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import FeedbackCard from "./FeedbackCard";
 import { useGetFeedbackById } from "../api/query";
+import CommentList from "./CommentList";
 
 const FeedbackDetails = () => {
 	const { feedbackId } = useParams();
@@ -9,7 +10,6 @@ const FeedbackDetails = () => {
 		feedbackId ? parseInt(feedbackId) : 0,
 	);
 
-	console.log(feedback);
 	return (
 		<section className="w-dvw h-dvh p-6 md:w-full md:h-full">
 			<header>
@@ -31,6 +31,7 @@ const FeedbackDetails = () => {
 				</nav>
 			</header>
 			{feedback && <FeedbackCard data={feedback} />}
+			{feedbackId && <CommentList feedbackId={+feedbackId} />}
 		</section>
 	);
 };

@@ -1,4 +1,4 @@
-import { TFeedback } from "./api.type";
+import { TComment, TFeedback, TUser } from "./api.type";
 import { supabaseClient } from "./supabaseClinet";
 
 export const getAllFeedbacks = async (): Promise<TFeedback[]> => {
@@ -45,42 +45,28 @@ export const updateFeedback = async ({
 	return updateData;
 };
 
-export const getCommentByPostId = async (postId: number) => {
-	const { data: comments, error } = await supabaseClient.rpc(
-		"execute_raw_sql",
-		{
-			sql: `
-    WITH RECURSIVE comment_thread AS (
-      -- Base query: get the original comment
-      SELECT 
-        c.id,
-        c.content,
-        c.author_id,
-        c.parent_id,
-        c.created_at
-      FROM comments c
-      WHERE c.id = ${postId}  -- The ID of the root comment
-
-      UNION ALL
-
-      -- Recursive part: get the replies (children)
-      SELECT 
-        c.id,
-        c.content,
-        c.author_id,
-        c.parent_id,
-        c.created_at
-      FROM comments c
-      INNER JOIN comment_thread ct
-        ON c.parent_id = ct.id
-    )
-    SELECT * FROM comment_thread;
-    `,
-		},
-	);
+export const getCommentByPostId = async (
+	postId: number,
+): Promise<TComment[]> => {
+	const { data: comments, error } = await supabaseClient.rpc("get_comments", {
+		id_request: postId,
+	});
 	if (error) {
 		console.log("comment fetch error");
 		throw new Error(error.message);
 	}
 	return comments;
+};
+
+export const getUserById = async (userId: string): Promise<TUser> => {
+	const { data: user, error } = await supabaseClient
+		.from("_user")
+		.select("id, email, username, name")
+		.eq("id", userId)
+		.single();
+	if (error) {
+		console.log("error in fetching user data");
+		throw new Error(error.message);
+	}
+	return user;
 };
