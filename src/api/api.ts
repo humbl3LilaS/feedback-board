@@ -46,38 +46,9 @@ export const updateFeedback = async ({
 };
 
 export const getCommentByPostId = async (postId: number) => {
-	const { data: comments, error } = await supabaseClient.rpc(
-		"execute_raw_sql",
-		{
-			sql: `
-    WITH RECURSIVE comment_thread AS (
-      -- Base query: get the original comment
-      SELECT 
-        c.id,
-        c.content,
-        c.author_id,
-        c.parent_id,
-        c.created_at
-      FROM comments c
-      WHERE c.id = ${postId}  -- The ID of the root comment
-
-      UNION ALL
-
-      -- Recursive part: get the replies (children)
-      SELECT 
-        c.id,
-        c.content,
-        c.author_id,
-        c.parent_id,
-        c.created_at
-      FROM comments c
-      INNER JOIN comment_thread ct
-        ON c.parent_id = ct.id
-    )
-    SELECT * FROM comment_thread;
-    `,
-		},
-	);
+	const { data: comments, error } = await supabaseClient.rpc("get_comments", {
+		id_request: parseInt(postId.toString()),
+	});
 	if (error) {
 		console.log("comment fetch error");
 		throw new Error(error.message);
