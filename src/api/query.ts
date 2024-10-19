@@ -1,5 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllFeedbacks, getCommentByPostId, getFeedbackById } from "./api";
+import {
+	getAllFeedbacks,
+	getCommentByPostId,
+	getFeedbackById,
+	getUserById,
+} from "./api";
 
 export const useGetFeedbacks = () => {
 	return useQuery({
@@ -21,6 +26,14 @@ export const useGetCommentsByPostId = (postId: number) => {
 	return useQuery({
 		queryKey: ["comments", postId],
 		queryFn: () => getCommentByPostId(postId),
+		staleTime: 3 * 60 * 1000,
+	});
+};
+
+export const useGetUserById = (userId: string) => {
+	return useQuery({
+		queryKey: ["user", userId],
+		queryFn: () => getUserById(userId),
 		staleTime: 3 * 60 * 1000,
 	});
 };

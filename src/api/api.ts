@@ -1,4 +1,4 @@
-import { TFeedback } from "./api.type";
+import { TComment, TFeedback, TUser } from "./api.type";
 import { supabaseClient } from "./supabaseClinet";
 
 export const getAllFeedbacks = async (): Promise<TFeedback[]> => {
@@ -45,13 +45,34 @@ export const updateFeedback = async ({
 	return updateData;
 };
 
+<<<<<<< HEAD
 export const getCommentByPostId = async (postId: number) => {
 	const { data: comments, error } = await supabaseClient.rpc("get_comments", {
 		id_request: parseInt(postId.toString()),
+=======
+export const getCommentByPostId = async (
+	postId: number,
+): Promise<TComment[]> => {
+	const { data: comments, error } = await supabaseClient.rpc("get_comments", {
+		id_request: postId,
+>>>>>>> b03f41558401e7af99afca82e9915f1ddd918f51
 	});
 	if (error) {
 		console.log("comment fetch error");
 		throw new Error(error.message);
 	}
 	return comments;
+};
+
+export const getUserById = async (userId: string): Promise<TUser> => {
+	const { data: user, error } = await supabaseClient
+		.from("_user")
+		.select("id, email, username, name")
+		.eq("id", userId)
+		.single();
+	if (error) {
+		console.log("error in fetching user data");
+		throw new Error(error.message);
+	}
+	return user;
 };
