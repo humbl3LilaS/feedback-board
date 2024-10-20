@@ -7,7 +7,7 @@ const CommentList = ({ feedbackId }: { feedbackId: number }) => {
 	const parents = comments && comments.filter((item) => !item.parent_id);
 	console.log("parents", parents);
 	return (
-		<div className="mt-6 p-6 rounded-xl shadow-md bg-white ">
+		<div className="my-6 p-6 rounded-xl shadow-md bg-white ">
 			{parents &&
 				parents.map((item) => {
 					if (!item.has_reply) {

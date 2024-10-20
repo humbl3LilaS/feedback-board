@@ -1,4 +1,10 @@
-import { TComment, TFeedback, TUser, TUserSignUpInfo } from "./api.type";
+import {
+	TComment,
+	TFeedback,
+	TPostCommentArgs,
+	TUser,
+	TUserSignUpInfo,
+} from "./api.type";
 import { supabaseClient } from "./supabaseClinet";
 
 /** Auth **/
@@ -40,15 +46,49 @@ export const singup = async ({
 
 	const { error: insertError } = await supabaseClient
 		.from("_user")
-		.insert({ email, username, name });
+		.insert({ email, username, name, auth_id: singUpData?.user?.id });
 	if (insertError) {
 		console.log("error during inserting data to _userTable", insertError);
 	}
 	return singUpData;
 };
 
-/** Auth **/
+/** Auth - END  **/
 
+/** user - START  **/
+
+export const getUser = async () => {
+	const { data } = await supabaseClient.auth.getUser();
+	console.log("current user", data);
+	const { data: userDetails, error } = await supabaseClient
+		.from("_user")
+		.select()
+		.eq("email", data.user?.email)
+		.single();
+
+	if (error) {
+		console.log("fetching error");
+		throw new Error(error.message);
+	}
+	return userDetails;
+};
+
+export const getUserById = async (userId: string): Promise<TUser> => {
+	const { data: user, error } = await supabaseClient
+		.from("_user")
+		.select("id, email, username, name")
+		.eq("id", userId)
+		.single();
+	if (error) {
+		console.log("error in fetching user data");
+		throw new Error(error.message);
+	}
+	return user;
+};
+
+/** user - END  **/
+
+/** feedback - START  **/
 export const getAllFeedbacks = async (): Promise<TFeedback[]> => {
 	const { data, error } = await supabaseClient
 		.from("requests")
@@ -92,6 +132,10 @@ export const updateFeedback = async ({
 	}
 	return updateData;
 };
+/** feedback - END  **/
+
+/** comment - START  **/
+
 export const getCommentByPostId = async (
 	postId: number,
 ): Promise<TComment[]> => {
@@ -106,15 +150,29 @@ export const getCommentByPostId = async (
 	return comments;
 };
 
-export const getUserById = async (userId: string): Promise<TUser> => {
-	const { data: user, error } = await supabaseClient
-		.from("_user")
-		.select("id, email, username, name")
-		.eq("id", userId)
+export const postComment = async ({
+	author_id,
+	content,
+	request_id,
+	parent_id,
+	has_reply,
+}: TPostCommentArgs): Promise<TComment> => {
+	const { data, error } = await supabaseClient
+		.from("comments")
+		.insert({
+			author_id,
+			content,
+			request_id,
+			parent_id: parent_id ? parent_id : null,
+			has_reply: has_reply ? has_reply : false,
+		})
+		.select()
 		.single();
 	if (error) {
-		console.log("error in fetching user data");
+		console.log("error in comment uploading");
 		throw new Error(error.message);
 	}
-	return user;
+	return data;
 };
+
+/** comment - END  **/

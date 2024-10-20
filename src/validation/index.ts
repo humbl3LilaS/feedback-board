@@ -62,3 +62,12 @@ export const SignupSchema = z
 	});
 
 export type SignupSchemaType = Zod.infer<typeof SignupSchema>;
+
+export const CommentSchema = z.object({
+	value: z
+		.string()
+		.min(1, { message: "Cannot be empty" })
+		.max(250, { message: "Only 250 characters is allowed" }),
+});
+
+export type CommentSchemaType = Zod.infer<typeof CommentSchema>;

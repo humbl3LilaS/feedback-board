@@ -153,7 +153,7 @@ const SignupForm = () => {
 				className="w-full px-4 py-2 bg-primary rounded-lg text-white font-bold disabled:bg-primary/30 md:py-3 md:text-lg"
 				disabled={isSubmitting || !isValid}
 				type="submit">
-				{isSubmitting ? "Submitting" : "Sing up"}
+				{isSubmitting ? "Submitting" : "Sign up"}
 			</button>
 		</form>
 	);

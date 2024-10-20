@@ -3,8 +3,17 @@ import {
 	getAllFeedbacks,
 	getCommentByPostId,
 	getFeedbackById,
+	getUser,
 	getUserById,
 } from "./api";
+
+export const useGetUser = () => {
+	return useQuery({
+		queryKey: ["user"],
+		queryFn: getUser,
+		staleTime: 24 * 60 * 1000,
+	});
+};
 
 export const useGetFeedbacks = () => {
 	return useQuery({

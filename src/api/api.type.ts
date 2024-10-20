@@ -36,3 +36,11 @@ export interface TUserSignUpInfo {
 	email: string;
 	password: string;
 }
+
+export interface TPostCommentArgs {
+	author_id: string;
+	request_id: number;
+	content: string;
+	parent_id?: number;
+	has_reply?: boolean;
+}
