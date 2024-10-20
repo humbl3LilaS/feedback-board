@@ -29,3 +29,10 @@ export interface TUser {
 	username: string;
 	name: string;
 }
+
+export interface TUserSignUpInfo {
+	name: string;
+	username: string;
+	email: string;
+	password: string;
+}

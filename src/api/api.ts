@@ -1,4 +1,4 @@
-import { TComment, TFeedback, TUser } from "./api.type";
+import { TComment, TFeedback, TUser, TUserSignUpInfo } from "./api.type";
 import { supabaseClient } from "./supabaseClinet";
 
 /** Auth **/
@@ -19,6 +19,32 @@ export const login = async ({
 		throw new Error(error.message);
 	}
 	return data;
+};
+
+export const singup = async ({
+	email,
+	password,
+	username,
+	name,
+}: TUserSignUpInfo) => {
+	const { data: singUpData, error: singUpError } =
+		await supabaseClient.auth.signUp({
+			email,
+			password,
+			options: { data: { username: username } },
+		});
+	if (singUpError) {
+		console.log("error during signup", singUpError);
+		throw new Error(singUpError.message);
+	}
+
+	const { error: insertError } = await supabaseClient
+		.from("_user")
+		.insert({ email, username, name });
+	if (insertError) {
+		console.log("error during inserting data to _userTable", insertError);
+	}
+	return singUpData;
 };
 
 /** Auth **/

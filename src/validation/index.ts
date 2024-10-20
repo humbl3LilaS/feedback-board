@@ -13,6 +13,10 @@ export type LoginSchemaType = Zod.infer<typeof LoginSchema>;
 
 export const SignupSchema = z
 	.object({
+		name: z
+			.string({ required_error: "Can't be empty" })
+			.min(4, { message: "Too short" })
+			.max(20, { message: "Too long" }),
 		username: z
 			.string({ required_error: "Can't be empty" })
 			.min(4, { message: "Too short" })
@@ -22,7 +26,7 @@ export const SignupSchema = z
 			}),
 		email: z
 			.string({ message: "Can't be empty" })
-			.email({ message: "Invallid emaill" }),
+			.email({ message: "Invalid email" }),
 		password: z
 			.string()
 			.min(8, { message: "Password must be at least 8 characters long." })
@@ -57,4 +61,4 @@ export const SignupSchema = z
 		message: "Passwords don't match",
 	});
 
-export type SingupSchemaType = Zod.infer<typeof SignupSchema>;
+export type SignupSchemaType = Zod.infer<typeof SignupSchema>;
