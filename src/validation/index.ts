@@ -3,8 +3,10 @@ import { z } from "zod";
 export const LoginSchema = z.object({
 	email: z
 		.string({ message: "email is required" })
-		.email({ message: "Invallid emaill address" }),
-	password: z.string({ message: "password is required" }),
+		.email({ message: "Invalid email address" }),
+	password: z
+		.string({ message: "password is required" })
+		.min(8, { message: "Invalid password" }),
 });
 
 export type LoginSchemaType = Zod.infer<typeof LoginSchema>;

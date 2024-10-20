@@ -1,6 +1,28 @@
 import { TComment, TFeedback, TUser } from "./api.type";
 import { supabaseClient } from "./supabaseClinet";
 
+/** Auth **/
+
+export const login = async ({
+	email,
+	password,
+}: {
+	email: string;
+	password: string;
+}) => {
+	const { data, error } = await supabaseClient.auth.signInWithPassword({
+		email,
+		password,
+	});
+	if (error) {
+		console.log("login failed", error);
+		throw new Error(error.message);
+	}
+	return data;
+};
+
+/** Auth **/
+
 export const getAllFeedbacks = async (): Promise<TFeedback[]> => {
 	const { data, error } = await supabaseClient
 		.from("requests")
@@ -44,23 +66,17 @@ export const updateFeedback = async ({
 	}
 	return updateData;
 };
-
-<<<<<<< HEAD
-export const getCommentByPostId = async (postId: number) => {
-	const { data: comments, error } = await supabaseClient.rpc("get_comments", {
-		id_request: parseInt(postId.toString()),
-=======
 export const getCommentByPostId = async (
 	postId: number,
 ): Promise<TComment[]> => {
 	const { data: comments, error } = await supabaseClient.rpc("get_comments", {
 		id_request: postId,
->>>>>>> b03f41558401e7af99afca82e9915f1ddd918f51
 	});
 	if (error) {
 		console.log("comment fetch error");
 		throw new Error(error.message);
 	}
+
 	return comments;
 };
 
