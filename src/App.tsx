@@ -4,18 +4,20 @@ import "./index.css";
 import FeedbackDetails from "./components/FeedbackDetails";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import { authRouteGuard, routeGuard } from "./loader/routeGuard";
 
 const router = createBrowserRouter([
-	{ path: "/", element: <Home /> },
+	{ path: "/", element: <Home />, loader: routeGuard },
 	{
 		path: "/feedbacks/details/:feedbackId",
 		element: <FeedbackDetails />,
+		loader: routeGuard,
 	},
 	{
 		path: "/auth",
 		children: [
-			{ path: "login", element: <Login /> },
-			{ path: "sign-up", element: <SignUp /> },
+			{ path: "login", element: <Login />, loader: authRouteGuard },
+			{ path: "sign-up", element: <SignUp />, loader: authRouteGuard },
 		],
 	},
 ]);
