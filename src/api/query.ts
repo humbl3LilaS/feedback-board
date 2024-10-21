@@ -36,6 +36,7 @@ export const useGetCommentsByPostId = (postId: number) => {
 		queryKey: ["comments", postId],
 		queryFn: () => getCommentByPostId(postId),
 		staleTime: 3 * 60 * 1000,
+		enabled: !!postId,
 	});
 };
 
@@ -44,5 +45,6 @@ export const useGetUserById = (userId: string) => {
 		queryKey: ["user", userId],
 		queryFn: () => getUserById(userId),
 		staleTime: 3 * 60 * 1000,
+		enabled: !!userId,
 	});
 };

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const RoadmapPreview = ({ className }: { className?: string }) => {
 	const { data: requests } = useGetFeedbacks();
 
-	const { tags, counts } = useMemo(
+	const { counts } = useMemo(
 		() => getRequestStatusCount(requests?.map((item) => item.status) ?? []),
 		[requests],
 	);
@@ -22,7 +22,7 @@ const RoadmapPreview = ({ className }: { className?: string }) => {
 				</Link>
 			</p>
 			<ul>
-				{tags.map((item, idx) => (
+				{["planned", "in-progress", "live"].map((item, idx) => (
 					<li
 						className="mb-2 flex items-center gap-x-4"
 						key={item}>

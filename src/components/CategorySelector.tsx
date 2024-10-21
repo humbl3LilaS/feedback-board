@@ -18,7 +18,7 @@ const CategorySelector = ({ name, control }: CategorySelectorProps) => {
 			render={({ field }) => (
 				<div className="mt-3 mb-4 relative">
 					<div
-						className="p-4 flex items-center justify-between bg-paleWhite rounded-lg"
+						className="p-4 flex items-center justify-between border border-transparent	bg-paleWhite rounded-lg cursor-pointer transition-colors duration-500 hover:border-primary"
 						onClick={() => {
 							setDropDownVisible((prev) => !prev);
 							field.onChange(field.value);

@@ -1,1 +1,1 @@
-export const tags = ["All", "UI", "UX", "Enhancement", "Bug", "Feature"];
+export const tags = ["all", "ui", "ux", "enhancement", "bug", "feature"];

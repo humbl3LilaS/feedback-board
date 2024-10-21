@@ -3,9 +3,11 @@ import { useGetFeedbacks } from "../api/query";
 import { cn } from "../util";
 import EmptyFeedback from "./EmptyFeedback";
 import FeedbackCard from "./FeedbackCard";
+import { useFilteredFeedback } from "../hook/useFilteredFeedback";
 
 const ReportList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
+	const filteredFeedbacks = useFilteredFeedback();
 	const suggestionCount =
 		feedbacks &&
 		feedbacks.filter((item) => item.status === "suggestion").length;
@@ -46,13 +48,16 @@ const ReportList = () => {
 				)}>
 				{feedbacks && feedbacks.length === 0 && <EmptyFeedback />}
 				<div className="w-full h-full flex flex-col gap-y-4 bg-paleWhite">
-					{feedbacks &&
-						feedbacks.map((item) => (
+					{filteredFeedbacks &&
+						filteredFeedbacks.map((item) => (
 							<FeedbackCard
 								key={item.id}
 								data={item}
 							/>
 						))}
+					{filteredFeedbacks && filteredFeedbacks.length === 0 && (
+						<EmptyFeedback forFilter />
+					)}
 				</div>
 			</div>
 		</div>
