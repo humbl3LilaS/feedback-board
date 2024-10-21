@@ -7,10 +7,10 @@ type FeedbackCardProps = {
 };
 
 const FeedbackCard = ({ data }: FeedbackCardProps) => {
-	const { mutateAsync: updateFeeback } = useUpdateFeedback();
+	const { mutateAsync: updateFeedback } = useUpdateFeedback();
 
 	const upvoteBtnHandler = async () => {
-		await updateFeeback({
+		await updateFeedback({
 			feedbackId: data.id,
 			data: { upvote: data.upvote + 1 },
 		});
@@ -30,7 +30,7 @@ const FeedbackCard = ({ data }: FeedbackCardProps) => {
 
 			{/* upvote update button */}
 			<button
-				className="py-2 px-4 h-fit flex items-center gap-x-2 rounded-xl bg-paleWhite text-paleGray font-bold md:order-1 md:flex-col md:gap-x-0 md:gap-y-2"
+				className="py-2 px-4 h-fit flex items-center gap-x-2 rounded-xl bg-paleWhite text-paleGray font-bold transition-colors duration-700 hover:bg-primary/10 md:order-1 md:flex-col md:gap-x-0 md:gap-y-2"
 				onClick={upvoteBtnHandler}>
 				<img
 					src="/assets/icons/icon-arrow-up.svg"

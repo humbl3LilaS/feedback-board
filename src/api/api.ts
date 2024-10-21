@@ -59,7 +59,6 @@ export const singup = async ({
 
 export const getUser = async () => {
 	const { data } = await supabaseClient.auth.getUser();
-	console.log("current user", data);
 	const { data: userDetails, error } = await supabaseClient
 		.from("_user")
 		.select()

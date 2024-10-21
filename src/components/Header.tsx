@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SideBar from "./SideBar";
 import CategoryFilter from "./CategoryFilter";
-import RoadmapList from "./RoadmapList";
+import RoadmapPreview from "./RoadmapPreview";
 
 const Header = () => {
 	const [sideBarActive, setSideBarActive] = useState(false);
@@ -32,7 +32,7 @@ const Header = () => {
 					</button>
 				</div>
 				<CategoryFilter className="max-sm:hidden md:flex-1 lg:max-w-[280px]" />
-				<RoadmapList className="max-sm:hidden md:flex-1 lg:max-w-[280px]" />
+				<RoadmapPreview className="max-sm:hidden md:flex-1 lg:max-w-[280px]" />
 			</nav>
 			{sideBarActive && <SideBar />}
 		</header>

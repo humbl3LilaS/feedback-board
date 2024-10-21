@@ -3,15 +3,12 @@ import CommentCard from "./CommentCard";
 
 const CommentList = ({ feedbackId }: { feedbackId: number }) => {
 	const { data: comments } = useGetCommentsByPostId(feedbackId);
-	console.log("comments", comments);
 	const parents = comments && comments.filter((item) => !item.parent_id);
-	console.log("parents", parents);
 	return (
 		<div className="my-6 p-6 rounded-xl shadow-md bg-white ">
 			{parents &&
 				parents.map((item) => {
 					if (!item.has_reply) {
-						console.log("pure parent", item);
 						return (
 							<CommentCard
 								data={item}

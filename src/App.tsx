@@ -5,12 +5,18 @@ import FeedbackDetails from "./components/FeedbackDetails";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { authRouteGuard, routeGuard } from "./loader/routeGuard";
+import Roadmap from "./pages/Roadmap";
 
 const router = createBrowserRouter([
 	{ path: "/", element: <Home />, loader: routeGuard },
 	{
 		path: "/feedbacks/details/:feedbackId",
 		element: <FeedbackDetails />,
+		loader: routeGuard,
+	},
+	{
+		path: "/roadmap",
+		element: <Roadmap />,
 		loader: routeGuard,
 	},
 	{
