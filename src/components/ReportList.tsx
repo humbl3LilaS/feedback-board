@@ -4,6 +4,7 @@ import { cn } from "../util";
 import EmptyFeedback from "./EmptyFeedback";
 import FeedbackCard from "./FeedbackCard";
 import { useFilteredFeedback } from "../hook/useFilteredFeedback";
+import SortingSelector from "./SortingSelector";
 
 const ReportList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
@@ -24,16 +25,8 @@ const ReportList = () => {
 					</span>
 				</div>
 				{/* //Todo make a seperate component */}
-				<div>
-					<span className="text-sm mr-2">Sort By:</span>
-					<button className="font-bold">
-						<span className="text-sm">Most Upvotes</span>
-						<img
-							src="/assets/icons/icon-arrow-down.svg"
-							className="inline-block ml-2 fill-white"
-						/>
-					</button>
-				</div>
+				<SortingSelector />
+
 				<Link
 					to="/feedbacks/add"
 					className="px-5 py-[10px] bg-primary rounded-xl font-bold">

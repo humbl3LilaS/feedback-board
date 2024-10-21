@@ -6,7 +6,7 @@ export default {
 			colors: {
 				primary: "#AD1FEA",
 				secondary: "#4661e6",
-				plaeBlue: "#F2F4FF",
+				plaeBlue: "#F2F4FE",
 				paleWhite: "#F7F8FD",
 				textSecondary: "#373f68",
 				textPrimary: "#3A4374",
