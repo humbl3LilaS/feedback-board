@@ -22,7 +22,7 @@ const Roadmap = () => {
 					<p className="font-bold text-lg">Roadmap</p>
 				</div>
 				<Link
-					to="/feedback/add"
+					to="/feedbacks/add"
 					className="px-5 py-3 font-bold bg-secondary rounded-lg transition-colors duration-700 hover:bg-primary">
 					+ Add Feedback
 				</Link>

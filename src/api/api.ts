@@ -2,6 +2,7 @@ import {
 	TComment,
 	TFeedback,
 	TPostCommentArgs,
+	TPostFeedbackArgs,
 	TUser,
 	TUserSignUpInfo,
 } from "./api.type";
@@ -131,6 +132,27 @@ export const updateFeedback = async ({
 	}
 	return updateData;
 };
+
+export const postFeedback = async ({
+	author_id,
+	category,
+	description,
+	title,
+}: TPostFeedbackArgs) => {
+	const { data, error } = await supabaseClient.from("requests").insert({
+		author_id,
+		category,
+		description,
+		title,
+	});
+
+	if (error) {
+		console.log("error inserting feedback", error);
+		throw new Error(error.message);
+	}
+	return data;
+};
+
 /** feedback - END  **/
 
 /** comment - START  **/

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TFeedback } from "../api/api.type";
 
 export const LoginSchema = z.object({
 	email: z
@@ -71,3 +72,17 @@ export const CommentSchema = z.object({
 });
 
 export type CommentSchemaType = Zod.infer<typeof CommentSchema>;
+
+export const AddFeedbackSchema = z.object({
+	title: z
+		.string()
+		.min(1, { message: "Cannot be empty" })
+		.max(120, { message: "Too long" }),
+	category: z.custom<TFeedback["category"]>(),
+	description: z
+		.string()
+		.min(1, { message: "Cannot be empty" })
+		.max(450, { message: "Too long" }),
+});
+
+export type AddFeedbackSchemaType = Zod.infer<typeof AddFeedbackSchema>;

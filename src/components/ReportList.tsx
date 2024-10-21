@@ -12,7 +12,7 @@ const ReportList = () => {
 	return (
 		<div className="h-full  md:mt-10 lg:mt-0 lg:flex-1 lg:max-w-[850px]">
 			<div className="px-6 py-4 flex justify-between items-center bg-textSecondary text-white md:mb-6 md:rounded-xl ">
-				<div className="flex items-center gap-x-4">
+				<div className="hidden items-center gap-x-4 md:flex">
 					<img
 						src="/assets/icons/icon-suggestions.svg"
 						alt=""

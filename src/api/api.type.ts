@@ -3,7 +3,7 @@ export interface TFeedback {
 	title: string;
 	upvote: number;
 	description: string;
-	status: "in-progress" | "planned" | "live";
+	status: "in-progress" | "planned" | "live" | "suggestion";
 	category: "enhancement" | "feature" | "bug" | "ui" | "ux";
 	created_at: string;
 	comments_count: number;
@@ -16,7 +16,7 @@ export interface TComment {
 	created_at: string;
 	category: "enhancement" | "feature" | "bug" | "ui" | "ux";
 	content: string;
-	status: "in-progress" | "planned" | "live";
+	status: "in-progress" | "planned" | "live" | "suggestion";
 	author_id: string;
 	parent_id: number;
 	has_reply: boolean;
@@ -43,4 +43,11 @@ export interface TPostCommentArgs {
 	content: string;
 	parent_id?: number;
 	has_reply?: boolean;
+}
+
+export interface TPostFeedbackArgs {
+	author_id: string;
+	title: string;
+	category: TFeedback["category"];
+	description: string;
 }
