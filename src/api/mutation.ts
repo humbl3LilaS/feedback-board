@@ -23,6 +23,9 @@ export const usePostComment = () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["comments", data?.request_id],
 			});
+			await queryClient.invalidateQueries({
+				queryKey: ["feedback", data?.request_id],
+			});
 		},
 	});
 };

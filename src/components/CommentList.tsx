@@ -16,6 +16,7 @@ const CommentList = ({ feedbackId }: { feedbackId: number }) => {
 							<CommentCard
 								data={item}
 								className="[&>hr]:last-of-type:hidden"
+								key={item.id}
 							/>
 						);
 					} else {
@@ -24,6 +25,7 @@ const CommentList = ({ feedbackId }: { feedbackId: number }) => {
 								<CommentCard
 									data={item}
 									hasReply
+									key={item.id}
 								/>
 								<div className="p-6 mb-6 border-l-[0.1px] border-l-[#8c92b3]">
 									{comments &&
@@ -33,6 +35,7 @@ const CommentList = ({ feedbackId }: { feedbackId: number }) => {
 												<CommentCard
 													data={mappedItem}
 													hasReply
+													key={mappedItem.id}
 												/>
 											))}
 								</div>

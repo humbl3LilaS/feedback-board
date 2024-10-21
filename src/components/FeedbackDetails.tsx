@@ -11,7 +11,6 @@ const FeedbackDetails = () => {
 		feedbackId ? parseInt(feedbackId) : 0,
 	);
 
-	console.log("feedbackdetail render");
 	return (
 		<section className="w-dvw h-dvh p-6 md:w-full md:h-full">
 			<header>

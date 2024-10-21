@@ -27,8 +27,8 @@ const CommentCard = ({ data, className, hasReply }: CommentBoxProps) => {
 				</p>
 				<button className="ml-auto font-bold text-secondary">Reply</button>
 			</div>
-			<p className="mb-6">{data.content}</p>
-			{!hasReply && <hr className="w-full mb-6 bg-[#8c92b3]" />}
+			<p>{data.content}</p>
+			{!hasReply && <hr className="w-full my-6 bg-[#8c92b3]" />}
 		</article>
 	);
 };
