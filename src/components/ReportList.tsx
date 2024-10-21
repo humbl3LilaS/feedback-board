@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useGetFeedbacks } from "../api/query";
 import { cn } from "../util";
 import EmptyFeedback from "./EmptyFeedback";
@@ -5,9 +6,21 @@ import FeedbackCard from "./FeedbackCard";
 
 const ReportList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
+	const suggestionCount =
+		feedbacks &&
+		feedbacks.filter((item) => item.status === "suggestion").length;
 	return (
 		<div className="h-full  md:mt-10 lg:mt-0 lg:flex-1 lg:max-w-[850px]">
 			<div className="px-6 py-4 flex justify-between items-center bg-textSecondary text-white md:mb-6 md:rounded-xl ">
+				<div className="flex items-center gap-x-4">
+					<img
+						src="/assets/icons/icon-suggestions.svg"
+						alt=""
+					/>
+					<span className="font-bold text-lg">
+						{suggestionCount} Suggestions
+					</span>
+				</div>
 				{/* //Todo make a seperate component */}
 				<div>
 					<span className="text-sm mr-2">Sort By:</span>
@@ -19,9 +32,11 @@ const ReportList = () => {
 						/>
 					</button>
 				</div>
-				<button className="px-5 py-[10px] bg-primary rounded-xl font-bold">
+				<Link
+					to="/feedbacks/add"
+					className="px-5 py-[10px] bg-primary rounded-xl font-bold">
 					+ Add Feedback
-				</button>
+				</Link>
 			</div>
 
 			<div
