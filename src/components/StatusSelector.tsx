@@ -1,15 +1,13 @@
-import { Control, Controller } from "react-hook-form";
 import { useState } from "react";
+import { Control, Controller } from "react-hook-form";
 
-type CategorySelectorProps = {
+type StatusSelectorProps = {
 	name: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	control: Control<any>;
 };
-
-const CategorySelector = ({ name, control }: CategorySelectorProps) => {
+const StatusSelector = ({ name, control }: StatusSelectorProps) => {
 	const [dropDownVisible, setDropDownVisible] = useState(false);
-
 	return (
 		<Controller
 			name={name}
@@ -31,9 +29,9 @@ const CategorySelector = ({ name, control }: CategorySelectorProps) => {
 					{dropDownVisible && (
 						<ul
 							className={
-								"absolute bg-white w-full mt-4 shadow-2xl shadow-stone-300  rounded-lg border border-paleGray z-10"
+								"absolute bg-white w-full mt-4 shadow-2xl shadow-stone-300  rounded-lg border border-paleGray"
 							}>
-							{["feature", "ui", "ux", "enhancement", "bug"].map((item) => (
+							{["planned", "in-progress", "live"].map((item) => (
 								<li
 									className="px-4 py-3 flex items-center justify-between border-b border-b-paleGray last:border-b-transparent text-paleGray transition-colors duration-500 cursor-pointer hover:text-primary"
 									key={item}
@@ -55,4 +53,4 @@ const CategorySelector = ({ name, control }: CategorySelectorProps) => {
 	);
 };
 
-export default CategorySelector;
+export default StatusSelector;

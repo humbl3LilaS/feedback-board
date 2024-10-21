@@ -31,7 +31,12 @@ const FeedbackDetails = () => {
 					</Link>
 				</nav>
 			</header>
-			{feedback && <FeedbackCard data={feedback} />}
+			{feedback && (
+				<FeedbackCard
+					data={feedback}
+					className="mb-6"
+				/>
+			)}
 			{feedbackId && <CommentList feedbackId={+feedbackId} />}
 			{feedbackId && <CommentForm feedbackId={+feedbackId} />}
 		</section>

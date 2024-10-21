@@ -84,5 +84,19 @@ export const AddFeedbackSchema = z.object({
 		.min(1, { message: "Cannot be empty" })
 		.max(450, { message: "Too long" }),
 });
-
 export type AddFeedbackSchemaType = Zod.infer<typeof AddFeedbackSchema>;
+
+export const EditFeedbackSchema = z.object({
+	title: z
+		.string()
+		.min(1, { message: "Cannot be empty" })
+		.max(120, { message: "Too long" }),
+	category: z.custom<TFeedback["category"]>(),
+	description: z
+		.string()
+		.min(1, { message: "Cannot be empty" })
+		.max(450, { message: "Too long" }),
+	status: z.custom<TFeedback["status"]>(),
+});
+
+export type EditFeedbackSchemaType = Zod.infer<typeof EditFeedbackSchema>;

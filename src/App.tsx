@@ -7,6 +7,7 @@ import SignUp from "./pages/SignUp";
 import { authRouteGuard, routeGuard } from "./loader/routeGuard";
 import Roadmap from "./pages/Roadmap";
 import AddFeedback from "./pages/AddFeedback";
+import EditFeedback from "./pages/EditFeedback";
 
 const router = createBrowserRouter([
 	{ path: "/", element: <Home />, loader: routeGuard },
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
 				element: <FeedbackDetails />,
 			},
 			{ path: "add", element: <AddFeedback /> },
+			{ path: "edit/:feedbackId", element: <EditFeedback /> },
 		],
 	},
 	{

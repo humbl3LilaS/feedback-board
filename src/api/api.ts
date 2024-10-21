@@ -153,6 +153,18 @@ export const postFeedback = async ({
 	return data;
 };
 
+export const deleteFeedback = async (feedbackId: number) => {
+	const { error } = await supabaseClient
+		.from("requests")
+		.delete()
+		.eq("id", feedbackId);
+	if (error) {
+		console.log("error deleting");
+		throw new Error(error.message);
+	}
+	return feedbackId;
+};
+
 /** feedback - END  **/
 
 /** comment - START  **/

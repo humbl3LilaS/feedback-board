@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { TFeedback } from "../api/api.type";
 import { useUpdateFeedback } from "../api/mutation";
+import { cn } from "../util";
 
 type FeedbackCardProps = {
 	data: TFeedback;
+	className?: string;
 };
 
-const FeedbackCard = ({ data }: FeedbackCardProps) => {
+const FeedbackCard = ({ data, className }: FeedbackCardProps) => {
 	const { mutateAsync: updateFeedback } = useUpdateFeedback();
 
 	const upvoteBtnHandler = async () => {
@@ -17,7 +19,11 @@ const FeedbackCard = ({ data }: FeedbackCardProps) => {
 	};
 
 	return (
-		<article className="w-full p-6 bg-white rounded-xl shadow-md flex flex-wrap justify-between md:p-8 md:justify-start md:gap-x-10">
+		<article
+			className={cn(
+				"w-full p-6 bg-white rounded-xl shadow-md flex flex-wrap justify-between md:p-8 md:justify-start md:gap-x-10",
+				className,
+			)}>
 			<div className="w-full md:w-fit md:order-2">
 				<h2 className="mb-2 text-sm font-bold">
 					<Link to={`/feedbacks/details/${data.id}`}>{data.title}</Link>

@@ -1,5 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postComment, postFeedback, updateFeedback } from "./api";
+import {
+	deleteFeedback,
+	postComment,
+	postFeedback,
+	updateFeedback,
+} from "./api";
 import { TFeedback, TPostCommentArgs, TPostFeedbackArgs } from "./api.type";
 
 export const useUpdateFeedback = () => {
@@ -37,6 +42,21 @@ export const usePostFeedback = () => {
 		onSuccess: async () => {
 			await queryClient.invalidateQueries({
 				queryKey: ["feedbacks"],
+			});
+		},
+	});
+};
+
+export const useDeleteFeedback = () => {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: (payload: number) => deleteFeedback(payload),
+		onSuccess: async (data) => {
+			await queryClient.invalidateQueries({
+				queryKey: ["feedbacks"],
+			});
+			queryClient.removeQueries({
+				queryKey: ["feedbacks", data],
 			});
 		},
 	});
