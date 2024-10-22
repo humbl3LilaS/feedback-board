@@ -21,7 +21,7 @@ const FeedbackCard = ({ data, className }: FeedbackCardProps) => {
 	return (
 		<article
 			className={cn(
-				"w-full p-6 bg-white rounded-xl shadow-md flex flex-wrap justify-between md:p-8 md:justify-start md:gap-x-10",
+				"w-full p-6 bg-white rounded-xl shadow-md flex flex-wrap justify-between md:p-8 md:justify-start md:gap-x-10 md:flex-nowrap",
 				className,
 			)}>
 			<div className="w-full md:w-fit md:order-2">

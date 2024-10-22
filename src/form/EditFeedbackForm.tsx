@@ -115,26 +115,28 @@ const EditFeedbackForm = ({ defaultValues }: EditFeedbackFormProps) => {
 						{...register("description")}
 					/>
 				</div>
-				<button
-					type="submit"
-					className="w-full px-5 py-[10px] mb-4 bg-primary rounded-xl font-bold text-white disabled:bg-primary/30"
-					disabled={
-						isSubmitting || !isValid || !(Object.keys(dirtyFields).length > 0)
-					}>
-					{isSubmitting ? "Submitting" : "Save Changes"}
-				</button>
-				<Link
-					to={"/"}
-					className="w-full block px-5 py-[10px] mb-4 bg-textPrimary rounded-xl font-bold text-white text-center">
-					Cancel
-				</Link>
-				<button
-					type="button"
-					className="w-full px-5 py-[10px] mb-4 bg-red-500 rounded-xl font-bold text-white disabled:bg-primary/30"
-					disabled={isSubmitting || !isValid}
-					onClick={onDelete}>
-					{isDeleting ? "Deleting" : "Delete"}
-				</button>
+				<div className="md:flex md:*:w-fit md:gap-x-4 md:items-center md:justify-end md:flex-row-reverse">
+					<button
+						type="submit"
+						className="w-full px-5 py-[10px] mb-4 bg-primary rounded-xl font-bold text-white disabled:bg-primary/30 md:mb-0"
+						disabled={
+							isSubmitting || !isValid || !(Object.keys(dirtyFields).length > 0)
+						}>
+						{isSubmitting ? "Submitting" : "Save Changes"}
+					</button>
+					<Link
+						to={"/"}
+						className="w-full block px-5 py-[10px] mb-4 bg-textPrimary rounded-xl font-bold transition-colors duration-700 text-white text-center hover:bg-textSecondary/80  md:mb-0">
+						Cancel
+					</Link>
+					<button
+						type="button"
+						className="w-full px-5 py-[10px] mb-4 bg-red-500 rounded-xl font-bold transition-colors duration-700 text-white disabled:bg-primary/30  hover:bg-red-500/60 md:mb-0 md:mr-auto"
+						disabled={isSubmitting || !isValid}
+						onClick={onDelete}>
+						{isDeleting ? "Deleting" : "Delete"}
+					</button>
+				</div>
 			</form>
 		</div>
 	);

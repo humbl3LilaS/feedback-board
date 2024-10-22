@@ -9,9 +9,6 @@ import SortingSelector from "./SortingSelector";
 const FeedbackList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
 	const filteredFeedbacks = useFilteredFeedback();
-	const suggestionCount =
-		feedbacks &&
-		feedbacks.filter((item) => item.status === "suggestion").length;
 	return (
 		<div className="h-full  md:mt-10 lg:mt-0 lg:flex-1 lg:max-w-[850px]">
 			<div className="px-6 py-4 flex justify-between items-center bg-textSecondary text-white md:mb-6 md:rounded-xl ">
@@ -21,7 +18,7 @@ const FeedbackList = () => {
 						alt=""
 					/>
 					<span className="font-bold text-lg">
-						{suggestionCount} Suggestions
+						{filteredFeedbacks?.length} Suggestions
 					</span>
 				</div>
 				<SortingSelector />

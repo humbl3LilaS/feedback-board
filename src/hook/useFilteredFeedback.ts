@@ -3,7 +3,8 @@ import { useGetFeedbacks } from "../api/query";
 import { useFilterStore } from "../store/filterStore";
 
 export const useFilteredFeedback = () => {
-	const { data: feedbacks } = useGetFeedbacks();
+	const { data } = useGetFeedbacks();
+	const feedbacks = data && data.filter((item) => item.status === "suggestion");
 	const filter = useFilterStore((state) => state.filter);
 	const sortOption = useFilterStore((state) => state.sorting);
 	if (filter === "all") {
