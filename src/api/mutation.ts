@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
 	deleteFeedback,
+	logout,
 	postComment,
 	postFeedback,
 	updateFeedback,
@@ -57,6 +58,18 @@ export const useDeleteFeedback = () => {
 			});
 			queryClient.removeQueries({
 				queryKey: ["feedbacks", data],
+			});
+		},
+	});
+};
+
+export const useLogOut = () => {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: logout,
+		onSuccess: () => {
+			queryClient.removeQueries({
+				queryKey: ["user"],
 			});
 		},
 	});

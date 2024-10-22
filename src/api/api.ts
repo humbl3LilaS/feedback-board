@@ -54,6 +54,15 @@ export const singup = async ({
 	return singUpData;
 };
 
+export const logout = async () => {
+	const { error } = await supabaseClient.auth.signOut();
+	if (error) {
+		console.log("Error logging out the user", error);
+		throw new Error(error.message);
+	}
+	return true;
+};
+
 /** Auth - END  **/
 
 /** user - START  **/
