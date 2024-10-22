@@ -5,7 +5,7 @@ import RoadmapPreview from "./RoadmapPreview";
 import User from "./User";
 
 const Header = () => {
-	const [sideBarActive, setSideBarActive] = useState(true);
+	const [sideBarActive, setSideBarActive] = useState(false);
 
 	const sideBarToggle = () => {
 		setSideBarActive((prev) => !prev);

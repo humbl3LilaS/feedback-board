@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { TComment } from "../api/api.type";
 import { useGetUserById } from "../api/query";
 import { cn } from "../util";
+import ReplyForm from "./ReplyForm";
 
 type CommentBoxProps = {
 	data: TComment;
@@ -11,8 +13,14 @@ type CommentBoxProps = {
 const CommentCard = ({ data, className, hasReply }: CommentBoxProps) => {
 	const { data: user } = useGetUserById(data.author_id);
 
+	const [showReplyForm, setShowReplyForm] = useState(false);
+
+	const replyBtnHandler = () => {
+		setShowReplyForm((prev) => !prev);
+	};
+
 	return (
-		<article className={cn(className)}>
+		<article className={cn("last:mt-6", className)}>
 			<div className="mb-6 flex items-center gap-x-4 text-sm">
 				<img
 					src="/assets/icons/user.svg"
@@ -25,9 +33,14 @@ const CommentCard = ({ data, className, hasReply }: CommentBoxProps) => {
 					</span>
 					<span className="text-paleGray">@{user?.username}</span>
 				</p>
-				<button className="ml-auto font-bold text-secondary">Reply</button>
+				<button
+					className="ml-auto font-bold text-secondary"
+					onClick={replyBtnHandler}>
+					Reply
+				</button>
 			</div>
 			<p>{data.content}</p>
+			{showReplyForm && <ReplyForm parentId={data.id} />}
 			{!hasReply && <hr className="w-full my-6 bg-[#8c92b3]" />}
 		</article>
 	);

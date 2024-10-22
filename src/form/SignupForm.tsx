@@ -19,7 +19,6 @@ const SignupForm = () => {
 	const navigate = useNavigate();
 
 	const onSubmit: SubmitHandler<SignupSchemaType> = async (value) => {
-		console.log(value);
 		const data = await singup({
 			name: value.name,
 			username: value.username,

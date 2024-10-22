@@ -27,10 +27,10 @@ export const usePostComment = () => {
 		mutationFn: (payload: TPostCommentArgs) => postComment(payload),
 		onSuccess: async (data) => {
 			await queryClient.invalidateQueries({
-				queryKey: ["comments", data?.request_id],
+				queryKey: ["comments", +data?.request_id],
 			});
 			await queryClient.invalidateQueries({
-				queryKey: ["feedback", data?.request_id],
+				queryKey: ["feedback", +data?.request_id],
 			});
 		},
 	});
