@@ -31,7 +31,7 @@ const StatusSelector = ({ name, control }: StatusSelectorProps) => {
 							className={
 								"absolute bg-white w-full mt-4 shadow-2xl shadow-stone-300  rounded-lg border border-paleGray"
 							}>
-							{["planned", "in-progress", "live"].map((item) => (
+							{["suggestion", "planned", "in-progress", "live"].map((item) => (
 								<li
 									className="px-4 py-3 flex items-center justify-between border-b border-b-paleGray last:border-b-transparent text-paleGray transition-colors duration-500 cursor-pointer hover:text-primary"
 									key={item}

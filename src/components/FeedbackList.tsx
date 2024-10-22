@@ -6,7 +6,7 @@ import FeedbackCard from "./FeedbackCard";
 import { useFilteredFeedback } from "../hook/useFilteredFeedback";
 import SortingSelector from "./SortingSelector";
 
-const ReportList = () => {
+const FeedbackList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
 	const filteredFeedbacks = useFilteredFeedback();
 	const suggestionCount =
@@ -24,7 +24,6 @@ const ReportList = () => {
 						{suggestionCount} Suggestions
 					</span>
 				</div>
-				{/* //Todo make a seperate component */}
 				<SortingSelector />
 
 				<Link
@@ -57,4 +56,4 @@ const ReportList = () => {
 	);
 };
 
-export default ReportList;
+export default FeedbackList;
