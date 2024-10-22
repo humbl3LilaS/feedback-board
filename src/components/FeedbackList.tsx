@@ -5,6 +5,7 @@ import EmptyFeedback from "./EmptyFeedback";
 import FeedbackCard from "./FeedbackCard";
 import { useFilteredFeedback } from "../hook/useFilteredFeedback";
 import SortingSelector from "./SortingSelector";
+import Skeleton from "./Skeleton";
 
 const FeedbackList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
@@ -37,13 +38,20 @@ const FeedbackList = () => {
 				)}>
 				{feedbacks && feedbacks.length === 0 && <EmptyFeedback />}
 				<div className="w-full h-full flex flex-col gap-y-4 bg-paleWhite">
-					{filteredFeedbacks &&
+					{filteredFeedbacks ? (
 						filteredFeedbacks.map((item) => (
 							<FeedbackCard
 								key={item.id}
 								data={item}
 							/>
-						))}
+						))
+					) : (
+						<div className="w-full h-full flex flex-col gap-y-4">
+							<Skeleton className="min-h-[180px] mb-2 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+							<Skeleton className="min-h-[180px] mb-2 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+						</div>
+					)}
 					{filteredFeedbacks && filteredFeedbacks.length === 0 && (
 						<EmptyFeedback forFilter />
 					)}

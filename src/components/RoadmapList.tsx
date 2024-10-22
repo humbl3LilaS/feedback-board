@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGetFeedbacks } from "../api/query";
 import { cn } from "../util";
 import RoadmapCard from "./RoadmapCard";
+import Skeleton from "./Skeleton";
 
 const RoadmapList = () => {
 	const { data: feedbacks } = useGetFeedbacks();
@@ -63,7 +64,7 @@ const RoadmapList = () => {
 						Planned ({planned?.length})
 					</h2>
 					<p className="mb-6 text-paleGray">Ideas prioritized for research</p>
-					{planned && (
+					{planned ? (
 						<ul className="flex flex-col gap-y-4">
 							{planned.map((item) => (
 								<RoadmapCard
@@ -71,6 +72,11 @@ const RoadmapList = () => {
 									key={item.id}
 								/>
 							))}
+						</ul>
+					) : (
+						<ul className="flex flex-col gap-y-4">
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
 						</ul>
 					)}
 				</div>
@@ -83,7 +89,7 @@ const RoadmapList = () => {
 						In-Progress ({inProgress?.length})
 					</h2>
 					<p className="mb-6 text-paleGray">Currently being developed</p>
-					{inProgress && (
+					{inProgress ? (
 						<ul className="flex flex-col gap-y-4">
 							{inProgress.map((item) => (
 								<RoadmapCard
@@ -91,6 +97,11 @@ const RoadmapList = () => {
 									key={item.id}
 								/>
 							))}
+						</ul>
+					) : (
+						<ul className="flex flex-col gap-y-4">
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
 						</ul>
 					)}
 				</div>
@@ -103,7 +114,7 @@ const RoadmapList = () => {
 						Live ({live?.length})
 					</h2>
 					<p className="mb-6 text-paleGray">Released features</p>
-					{live && (
+					{live ? (
 						<ul className="flex flex-col gap-y-4">
 							{live.map((item) => (
 								<RoadmapCard
@@ -111,6 +122,11 @@ const RoadmapList = () => {
 									key={item.id}
 								/>
 							))}
+						</ul>
+					) : (
+						<ul className="flex flex-col gap-y-4">
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+							<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
 						</ul>
 					)}
 				</div>

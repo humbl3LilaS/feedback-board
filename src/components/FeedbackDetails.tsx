@@ -3,6 +3,7 @@ import FeedbackCard from "./FeedbackCard";
 import CommentList from "./CommentList";
 import { useGetFeedbackById } from "../api/query";
 import CommentForm from "../form/CommentForm";
+import Skeleton from "./Skeleton";
 
 const FeedbackDetails = () => {
 	const { feedbackId } = useParams();
@@ -31,11 +32,13 @@ const FeedbackDetails = () => {
 					</Link>
 				</nav>
 			</header>
-			{feedback && (
+			{feedback ? (
 				<FeedbackCard
 					data={feedback}
-					className="mb-6 md:max-w-[640px] lg:max-w-[800px]"
+					className="mb-6  md:max-w-[640px] lg:max-w-[800px]"
 				/>
+			) : (
+				<Skeleton className="min-h-[240px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
 			)}
 			{feedbackId && (
 				<CommentList
@@ -43,6 +46,7 @@ const FeedbackDetails = () => {
 					className="md:max-w-[640px] lg:max-w-[800px] md:w-full"
 				/>
 			)}
+
 			{feedbackId && (
 				<CommentForm
 					feedbackId={+feedbackId}

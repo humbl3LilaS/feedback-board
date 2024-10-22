@@ -1,6 +1,7 @@
 import { useGetCommentsByPostId } from "../api/query";
 import { cn } from "../util";
 import CommentCard from "./CommentCard";
+import Skeleton from "./Skeleton";
 
 const CommentList = ({
 	feedbackId,
@@ -9,8 +10,19 @@ const CommentList = ({
 	feedbackId: number;
 	className?: string;
 }) => {
-	const { data: comments } = useGetCommentsByPostId(feedbackId);
+	const { data: comments, isLoading } = useGetCommentsByPostId(feedbackId);
 	const parents = comments && comments.filter((item) => !item.parent_id);
+
+	if (isLoading) {
+		return (
+			<div className="md:max-w-[640px] lg:max-w-[800px] md:w-full">
+				<Skeleton className="min-h-[180px] mb-2 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+				<Skeleton className="min-h-[180px] mb-2 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+				<Skeleton className="min-h-[180px] mb-6 rounded-lg md:max-w-[640px] lg:max-w-[800px]" />
+			</div>
+		);
+	}
+
 	return (
 		<>
 			{parents && parents.length > 0 && (
