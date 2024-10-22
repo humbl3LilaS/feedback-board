@@ -1,13 +1,21 @@
 import { useGetCommentsByPostId } from "../api/query";
+import { cn } from "../util";
 import CommentCard from "./CommentCard";
 
-const CommentList = ({ feedbackId }: { feedbackId: number }) => {
+const CommentList = ({
+	feedbackId,
+	className,
+}: {
+	feedbackId: number;
+	className?: string;
+}) => {
 	const { data: comments } = useGetCommentsByPostId(feedbackId);
 	const parents = comments && comments.filter((item) => !item.parent_id);
 	return (
 		<>
 			{parents && parents.length > 0 && (
-				<div className="my-6 p-6 rounded-xl shadow-md bg-white ">
+				<div
+					className={cn("my-6 p-6 rounded-xl shadow-md bg-white ", className)}>
 					{parents.map((item) => {
 						if (!item.has_reply) {
 							return (

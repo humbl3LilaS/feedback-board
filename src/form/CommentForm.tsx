@@ -3,8 +3,15 @@ import { CommentSchema, CommentSchemaType } from "../validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { usePostComment } from "../api/mutation";
 import { useGetUser } from "../api/query";
+import { cn } from "../util";
 
-const CommentForm = ({ feedbackId }: { feedbackId: number }) => {
+const CommentForm = ({
+	feedbackId,
+	className,
+}: {
+	feedbackId: number;
+	className?: string;
+}) => {
 	const {
 		register,
 		handleSubmit,
@@ -32,7 +39,7 @@ const CommentForm = ({ feedbackId }: { feedbackId: number }) => {
 	const watchValue = watch("value");
 
 	return (
-		<div className="mb-20 p-6 rounded-xl shadow-md bg-white">
+		<div className={cn("mb-20 p-6 rounded-xl shadow-md bg-white", className)}>
 			<h3 className="mb-6 font-lg font-bold text-textPrimary">Add Comment</h3>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<textarea

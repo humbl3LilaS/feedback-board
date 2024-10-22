@@ -12,8 +12,8 @@ const FeedbackDetails = () => {
 	);
 
 	return (
-		<section className="w-dvw h-dvh p-6 md:w-full md:h-full">
-			<header>
+		<section className="w-dvw h-dvh p-6 md:w-full md:h-full md:flex flex-col items-center">
+			<header className="md:max-w-[640px] lg:max-w-[800px] md:w-full">
 				<nav className="mb-6 flex justify-between items-center">
 					<button
 						className="flex gap-x-2 items-center"
@@ -34,11 +34,21 @@ const FeedbackDetails = () => {
 			{feedback && (
 				<FeedbackCard
 					data={feedback}
-					className="mb-6"
+					className="mb-6 md:max-w-[640px] lg:max-w-[800px]"
 				/>
 			)}
-			{feedbackId && <CommentList feedbackId={+feedbackId} />}
-			{feedbackId && <CommentForm feedbackId={+feedbackId} />}
+			{feedbackId && (
+				<CommentList
+					feedbackId={+feedbackId}
+					className="md:max-w-[640px] lg:max-w-[800px] md:w-full"
+				/>
+			)}
+			{feedbackId && (
+				<CommentForm
+					feedbackId={+feedbackId}
+					className="md:max-w-[640px] lg:max-w-[800px] md:w-full"
+				/>
+			)}
 		</section>
 	);
 };
